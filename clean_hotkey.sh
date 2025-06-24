@@ -96,26 +96,21 @@ log "Protocol: $PROTO"
 SEL="$("${SEL_CMD[@]}" 2>/dev/null || true)"
 if [[ -z $SEL ]]; then
   notify "0 chars selected – nothing to do"
-  log "Selection empty"
   exit 0
 fi
-log "Selection length: ${#SEL}"
 
-# ----- clean -----------------------------------------------------------------
+PREVIEW="$(echo -n "$SEL" | tr '\n' ' ' | head -c 30)"   # ← new
+
+# ----- clean, copy, paste ----------------------------------------------------
 CLEANED="$(printf '%s' "$SEL" | "$CLEANER")"
-log "Cleaned length:   ${#CLEANED}"
-
-# ----- put into clipboard ----------------------------------------------------
 printf '%s' "$CLEANED" | "${CLIP_CMD[@]}"
-log "Clipboard updated"
 
-# ----- try to paste ----------------------------------------------------------
 if TRY_PASTE 2>/dev/null; then
-  notify "${#CLEANED} chars cleaned & pasted"
-  log "Pasted via built-in tool"
-  exit 0
+  notify "${#CLEANED} chars cleaned & pasted — \"${PREVIEW}\""
+else
+  notify "${#CLEANED} chars cleaned – press Ctrl+V — \"${PREVIEW}\""
 fi
-log "Built-in paste failed"
+
 
 # ----- ydotool fallback ------------------------------------------------------
 if [[ $USE_UINPUT -eq 1 ]] && command -v ydotool >/dev/null 2>&1; then
