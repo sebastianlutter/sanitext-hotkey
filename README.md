@@ -5,13 +5,14 @@
 This repository contains a tiny helper workflow powered by the Python library
 [`sanitext`](https://pypi.org/project/sanitext/).  It removes zero‑width
 characters, homoglyphs, smart quotes, and other Unicode gremlins, leaving you
-with plain, safe text.
+with plain, safe text. I use it to clean text from LLMs from any special chars
+and watermarks.
 
-* ✅ Works on **Ubuntu 22.04+** under **i3wm**, **Sway**, **Hyprland**, **GNOME**,
+* Works on **Ubuntu 22.04+** under **i3wm**, **Sway**, **Hyprland**, **GNOME**,
   **KDE**, **XFCE** … basically any Xorg or Wayland session.
-* ✅ No editor‑specific plugins – functions everywhere you can select text.
-* ✅ Automatic paste‑back where the compositor allows synthetic keystrokes.
-* ✅ Passive notification pops up so you always know what happened.
+* No editor‑specific plugins – functions everywhere you can select text.
+* Automatic paste‑back where the compositor allows synthetic keystrokes.
+* Passive notification pops up so you always know what happened.
 
 ---
 
@@ -22,7 +23,6 @@ with plain, safe text.
 | `sanitext_selection.py` | Reads text from *stdin*, sanitises it with **sanitext**, prints the cleaned text to *stdout*.                                                                                                                                                                                                                                                                     |
 | `clean_hotkey.sh`       | Glue script. 1) Grabs the current **PRIMARY** selection, 2) calls `sanitext_selection.py`, 3) puts the result in the clipboard, 4) tries to press **Ctrl + V** automatically, and 5) shows a small desktop notification. Flags:<br>  • `-v`, `--verbose` – debug output to *stderr*<br>  • `--no-uinput` – disable `ydotool` fallback (Wayland security‑friendly) |
 | `install.sh`            | One‑shot installer – installs dependencies, copies the two helper scripts to `~/.local/bin`, sets executable bits, prints the key‑binding snippet for i3/Sway.                                                                                                                                                                                                    |
-| `README.md`             | You are here.                                                                                                                                                                                                                                                                                                                                                     |
 
 ---
 
@@ -39,7 +39,7 @@ Add the hot‑key (example for **i3**; swap `bindsym` syntax for Sway):
 
 ```ini
 # ~/.config/i3/config
-bindsym $mod+Ctrl+h exec --no-startup-id ~/.local/bin/clean_hotkey.sh
+bindsym $mod+Shift+h exec --no-startup-id ~/.local/bin/clean_hotkey.sh
 ```
 
 Reload your WM (`$mod+Shift+r` in i3, `$mod+Shift+c` in Sway).

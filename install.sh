@@ -30,7 +30,7 @@ echo
 echo "Installation complete."
 echo
 echo "Add this line to your i3 or Sway config, reload, and press Mod+Ctrl+H:"
-echo '    bindsym $mod+Ctrl+h exec --no-startup-id ~/.local/bin/clean_hotkey.sh'
+echo '    bindsym $mod+Shift+h exec --no-startup-id ~/.local/bin/clean_hotkey.sh'
 echo
 echo "Tip: on GNOME/KDE you can bind ~/.local/bin/clean_hotkey.sh to any shortcut"
 echo "     via the system keyboard-settings panel."
