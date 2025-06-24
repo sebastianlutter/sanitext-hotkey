@@ -5,13 +5,14 @@
 This repository contains a tiny helper workflow powered by the Python library
 [`sanitext`](https://pypi.org/project/sanitext/).  It removes zero‑width
 characters, homoglyphs, smart quotes, and other Unicode gremlins, leaving you
-with plain, safe text.
+with plain, safe text. I use it to clean text from LLMs from any special chars
+and watermarks.
 
-* ✅ Works on **Ubuntu 22.04+** under **i3wm**, **Sway**, **Hyprland**, **GNOME**,
+* Works on **Ubuntu 22.04+** under **i3wm**, **Sway**, **Hyprland**, **GNOME**,
   **KDE**, **XFCE** … basically any Xorg or Wayland session.
-* ✅ No editor‑specific plugins – functions everywhere you can select text.
-* ✅ Automatic paste‑back where the compositor allows synthetic keystrokes.
-* ✅ Passive notification pops up so you always know what happened.
+* No editor‑specific plugins – functions everywhere you can select text.
+* Automatic paste‑back where the compositor allows synthetic keystrokes.
+* Passive notification pops up so you always know what happened.
 
 ---
 
